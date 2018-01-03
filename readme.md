@@ -1,8 +1,8 @@
 # Xinchro's World Clocks
 
-Once upon a time (https://github.com/xinchro)[Xinchro] got tired of googling timezones, so he made this.
+Once upon a time [Xinchro](https://github.com/xinchro) got tired of googling timezones, so he made this.
 
-Written in (http://vuejs.org/)[VueJS].
+Written in [VueJS](http://vuejs.org/).
 
 ## Usage
 
