@@ -7,15 +7,26 @@ html, body {
   color: #e3e3e3;
   font-family: 'Oswald', sans-serif;
 
-  .clock {
-    width: 200px;
-    box-shadow: inset red 0 0 0 1px;
+  #vue-app {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
 
-    h1 {
-      text-align: center;
-      text-transform: uppercase;
-      margin: 0;
-      padding: 0;
+    .clock {
+      width: 200px;
+      border-radius: 5px;
+      background: rgba(white, 0.1);
+      margin: 5px;
+
+      h1 {
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+      }
     }
   }
 }
