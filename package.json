@@ -1,0 +1,22 @@
+{
+  "name": "worldclocks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "host": "http-server -p 80",
+    "sass": "sass style.scss style.css",
+    "build": "npm run sass",
+    "watch:all": "watch-spawn -i -p \"./**/*.+(js|scss|html)\" npm run build",
+    "watch": "run-p watch:all host",
+    "start": "npm run watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xinchro",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "http-server": "^0.10.0",
+    "npm-run-all": "^4.1.2",
+    "watch-spawn": "^2.0.0"
+  }
+}
