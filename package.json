@@ -4,10 +4,10 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "host": "http-server -p 80",
-    "sass": "sass style.scss style.css",
+    "host": "http-server -p 80 ./src/",
+    "sass": "sass ./src/style.scss ./src/style.css",
     "build": "npm run sass",
-    "watch:all": "watch-spawn -i -p \"./**/*.+(js|scss|html)\" npm run build",
+    "watch:all": "watch-spawn -i -p \"./src/**/*.+(js|scss|html)\" npm run build",
     "watch": "run-p watch:all host",
     "start": "npm run watch",
     "test": "echo \"Error: no test specified\" && exit 1"
