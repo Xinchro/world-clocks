@@ -4,7 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "sync": "aws s3 sync src// s3://time.xinchronize.com",
+    "sync": "aws s3 sync ./src/ s3://time.xinchronize.com",
     "host": "http-server -p 80 ./src/",
     "sass": "sass ./src/style.scss ./src/style.css",
     "build": "npm run sass",
