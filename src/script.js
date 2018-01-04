@@ -86,6 +86,7 @@ let app = new Vue({
       let now = new Date()
       let hour = now.getUTCHours()+offset
       if(hour > 24) hour = hour - 24 // check for overtime
+      if(hour < 0) hour = 24 + offset // check for overtime
       let minute = now.getUTCMinutes()
       let second = now.getUTCSeconds()
 
@@ -167,7 +168,7 @@ let app = new Vue({
         case 21: // from 21:00
         case 22:
         case 23:
-        case 24:
+        case 0:
         case 1:
         case 2:
         case 3:
@@ -181,6 +182,7 @@ let app = new Vue({
           else if(area === "text") return "white"
           else return "white"
         default:
+          console.log(area, time)
           return "white"
       }
     },
@@ -194,4 +196,3 @@ let app = new Vue({
     this.start()
   }
 })
-
