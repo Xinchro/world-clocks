@@ -8,15 +8,15 @@ let app = new Vue({
     locations: [
       {
         "name": "london-uk",
-        "offset": 0
+        "tz": "Europe/London"
       },
       {
         "name": "london-ca",
-        "offset": -5
+        "tz": "America/Toronto"
       },
       {
         "name": "johannesburg-sa",
-        "offset": 2
+        "tz": "Africa/Johannesburg"
       }
     ]
   },
@@ -36,23 +36,23 @@ let app = new Vue({
 
     drawClocks(radius) {
       this.locations.forEach((loc) => {
-        this.drawClock(loc.ctx, radius, loc.offset)
+        this.drawClock(loc.ctx, radius, loc.tz)
       })
     },
 
-    drawClock(ctx, radius, offset) {
-      this.drawFace(ctx, radius, offset)
-      this.drawNumbers(ctx, radius, offset)
-      this.drawTime(ctx, radius, offset)
+    drawClock(ctx, radius, tz) {
+      this.drawFace(ctx, radius, tz)
+      this.drawNumbers(ctx, radius, tz)
+      this.drawTime(ctx, radius, tz)
       ctx.strokeStyle = "black" // for clock border
     },
 
-    drawFace(ctx, radius, offset) {
+    drawFace(ctx, radius, tz) {
       let grad
 
       ctx.beginPath()
       ctx.arc(0, 0, radius, 0, 2*Math.PI)
-      ctx.fillStyle = this.getColorByHour("face", this.getHour(offset))
+      ctx.fillStyle = this.getColorByHour("face", this.getHour(tz))
       ctx.fill()
 
       ctx.lineWidth = radius*0.1
@@ -62,11 +62,11 @@ let app = new Vue({
       ctx.fill()
     },
 
-    drawNumbers(ctx, radius, offset) {
+    drawNumbers(ctx, radius, tz) {
       let ang
       let num
 
-      ctx.fillStyle = this.getColorByHour("text", this.getHour(offset))
+      ctx.fillStyle = this.getColorByHour("text", this.getHour(tz))
       ctx.font = radius*0.3 + "px oswald"
       ctx.textBaseline="middle"
       ctx.textAlign="center"
@@ -82,37 +82,35 @@ let app = new Vue({
       }
     },
 
-    getTime(offset) {
-      let now = new Date()
-      let hour = now.getUTCHours()+offset
-      if(hour >= 24) hour = hour - 24 // check for overtime
-      if(hour < 0) hour = 24 - Math.abs(hour) // check for overtime
-      let minute = now.getUTCMinutes()
-      let second = now.getUTCSeconds()
+    getTime(tz) {
+      let now = moment().tz(tz)
+      let hour = now.hour()
+      let minute = now.minute()
+      let second = now.second()
 
       return {"hour":hour, "minute":minute, "second":second}
     },
 
-    getHour(offset) {
-      return this.getTime(offset).hour
+    getHour(tz) {
+      return this.getTime(tz).hour
     },
 
-    drawTime(ctx, radius, offset) {
+    drawTime(ctx, radius, tz) {
         // second
-        let second=(this.getTime(offset).second*Math.PI/30)
-        this.drawHand(ctx, second, radius*0.9, radius*0.02, this.getColorByHour("second", this.getHour(offset)))
+        let second=(this.getTime(tz).second*Math.PI/30)
+        this.drawHand(ctx, second, radius*0.9, radius*0.02, this.getColorByHour("second", this.getHour(tz)))
         
         // minute
-        let minute=(this.getTime(offset).minute*Math.PI/30)+(second*Math.PI/(30*60))
-        this.drawHand(ctx, minute, radius*0.8, radius*0.07, this.getColorByHour("minute", this.getHour(offset)))
+        let minute=(this.getTime(tz).minute*Math.PI/30)+(second*Math.PI/(30*60))
+        this.drawHand(ctx, minute, radius*0.8, radius*0.07, this.getColorByHour("minute", this.getHour(tz)))
 
         // hour
-        let hour=this.getTime(offset).hour%12
+        let hour=this.getTime(tz).hour%12
         hour=
           (hour*Math.PI/6)+
           (minute*Math.PI/(6*60))+
           (second*Math.PI/(360*60))
-        this.drawHand(ctx, hour, radius*0.5, radius*0.07, this.getColorByHour("hour", this.getHour(offset)))
+        this.drawHand(ctx, hour, radius*0.5, radius*0.07, this.getColorByHour("hour", this.getHour(tz)))
     },
 
     drawHand(ctx, pos, length, width, color) {
