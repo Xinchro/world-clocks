@@ -134,9 +134,9 @@ let app = new Vue({
         case 10: // to 10:00 ↓
           // dawn
           if(area === "face") return "#ff976e"
-          else if(area === "minute") return "#6eecff"
-          else if(area === "hour") return "#c36eff"
-          else if(area === "second") return "#ffe06e"
+          else if(area === "minute") return "#695c34"
+          else if(area === "hour") return "#4f6934"
+          else if(area === "second") return "#69344f"
           else if(area === "text") return "black"
           else return "white"
         case 11: // from 11:00
@@ -148,9 +148,9 @@ let app = new Vue({
         case 17: // to 17:00 ↓
           // noon
           if(area === "face") return "#ebac00"
-          else if(area === "minute") return "#6e00eb"
-          else if(area === "hour") return "#eb007d"
-          else if(area === "second") return "#7deb00"
+          else if(area === "minute") return "#472804"
+          else if(area === "hour") return "#434704"
+          else if(area === "second") return "#470443"
           else if(area === "text") return "black"
           else return "white"
         case 18: // from 18:00
@@ -158,9 +158,9 @@ let app = new Vue({
         case 20: // to 20:00 ↓
           // dusk
           if(area === "face") return "#4e3469"
-          else if(area === "minute") return "#695c34"
-          else if(area === "hour") return "#4f6934"
-          else if(area === "second") return "#69344f"
+          else if(area === "minute") return "#6eecff"
+          else if(area === "hour") return "#c36eff"
+          else if(area === "second") return "#ffe06e"
           else if(area === "text") return "white"
           else return "white"
         case 21: // from 21:00
@@ -174,9 +174,9 @@ let app = new Vue({
         case 5: // to 05:00 ↓
           // zero
           if(area === "face") return "#080447"
-          else if(area === "minute") return "#472804"
-          else if(area === "hour") return "#434704"
-          else if(area === "second") return "#470443"
+          else if(area === "minute") return "#6e00eb"
+          else if(area === "hour") return "#eb007d"
+          else if(area === "second") return "#7deb00"
           else if(area === "text") return "white"
           else return "white"
         default:
