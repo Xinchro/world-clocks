@@ -85,8 +85,8 @@ let app = new Vue({
     getTime(offset) {
       let now = new Date()
       let hour = now.getUTCHours()+offset
-      if(hour > 24) hour = hour - 24 // check for overtime
-      if(hour < 0) hour = 24 + offset // check for overtime
+      if(hour >= 24) hour = hour - 24 // check for overtime
+      if(hour < 0) hour = 24 - Math.abs(hour) // check for overtime
       let minute = now.getUTCMinutes()
       let second = now.getUTCSeconds()
 
@@ -107,7 +107,7 @@ let app = new Vue({
         this.drawHand(ctx, minute, radius*0.8, radius*0.07, this.getColorByHour("minute", this.getHour(offset)))
 
         // hour
-        let hour=this.getTime(offset).hour%12// remove timezone offset
+        let hour=this.getTime(offset).hour%12
         hour=
           (hour*Math.PI/6)+
           (minute*Math.PI/(6*60))+
@@ -182,7 +182,6 @@ let app = new Vue({
           else if(area === "text") return "white"
           else return "white"
         default:
-          console.log(area, time)
           return "white"
       }
     },
