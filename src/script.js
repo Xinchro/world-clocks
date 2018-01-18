@@ -17,6 +17,10 @@ let app = new Vue({
       {
         "name": "johannesburg-sa",
         "tz": "Africa/Johannesburg"
+      },
+      {
+        "name": "losangeles-na",
+        "tz": "America/Los_Angeles"
       }
     ]
   },
